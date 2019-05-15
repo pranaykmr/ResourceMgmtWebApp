@@ -9,4 +9,5 @@
     -webkit-background-size: cover;
     background-size: cover;
     background-image: url(./images/backdropLogin.jpg);
+    overflow: auto
 }
