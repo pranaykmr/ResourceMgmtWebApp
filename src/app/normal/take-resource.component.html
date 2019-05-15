@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Resources Taken By Others</h3>
+      </div>
+      <div class="panel-body em10Div">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Sl.No.</th>
+              <th>Resource Name</th>
+              <th>Consumer Name</th>
+              <th>Picked-Up</th>
+              <th>Days Passed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cnsmdRes of otherUsersCnsmdRes; let i=index">
+              <td>{{i+1}}</td>
+              <td>{{cnsmdRes.ResourceName}}</td>
+              <td>{{cnsmdRes.ConsumerName}}</td>
+              <td>{{cnsmdRes.PickUpDateTime | date: 'medium'}}</td>
+              <td>{{cnsmdRes.NoOfDays}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">All Available Resource</h3>
+          </div>
+          <div class="panel-body em20Div">
+            <div class="list-group" *ngIf="takeResourceData">
+              <a *ngFor="let availableResources of takeResourceData.AvailableResources" href="#" class="list-group-item"
+                (click)="SelectAvailableResources($event, availableResources)">
+                {{availableResources.Name}}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="align-middle">
+          <div class="row">
+            <div class="col-xs-8">
+              <select class="form-control" [(ngModel)]="consumerId">
+                <option selected="" value=""></option>
+                <option *ngFor="let consumer of consumers" [value]="consumer.Id">{{consumer.Name}}</option>
+              </select>
+            </div>
+            <div class="col-xs-4">
+              <button type="button" class="btn btn-primary btn-lg btn-block" (click)="OnConsumerChange()">Fetch</button>
+            </div>
+          </div>
+          <br />
+          <button type="button" class="btn btn-primary btn-lg btn-block" (click)="TakeResource()">Take</button>
+          <br />
+          <button type="button" class="btn btn-primary btn-lg btn-block" (click)="DropResource()">Drop</button>
+          <br />
+          <button type="button" class="btn btn-primary btn-lg btn-block" (click)="SaveFinalizedResouces()">Save
+            Finalized Resouces</button>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Taken Resource</h3>
+          </div>
+          <div class="panel-body em20Div">
+            <div class="list-group" *ngIf="selectedUserCnsmdRes">
+              <a *ngFor="let consumedResources of selectedUserCnsmdRes" href="#" class="list-group-item"
+                (click)="SelectConsumedResources($event, consumedResources)">
+                {{consumedResources.ResourceName}}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

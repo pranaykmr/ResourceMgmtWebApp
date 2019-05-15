@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="row">
+  <div class="panel panel-primary" *ngIf="resources">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Resource</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group row">
+        <div class="col-xs-6">
+          <label for="resName">Resource Name</label>
+          <input type="text" name="resName" id="resName" class="form-control" [(ngModel)]="currentResource.Name" />
+        </div>
+        <div class="col-xs-6">
+          <label for="resName">IMEI No</label>
+          <input type="text" name="resIMEI" id="resIMEI" class="form-control" [(ngModel)]="currentResource.IMEI" />
+        </div>
+      </div>
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Sl.No.</th>
+              <th>Resource Name</th>
+              <th>IMEI No.</th>
+              <th>Alter</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let resource of resources; let i=index">
+              <td>{{i+1}}</td>
+              <td>{{resource.Name}}</td>
+              <td>{{resource.IMEI}}</td>
+              <td><a (click)='EditResource(resource)'>Edit</a></td>
+              <td><a (click)='DeleteResource(resource.Id)'>Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-primary" type="button" id="btnSaveRes" (click)='SaveResource()'>Save Resource</button>
+    </div>
+  </div>
+
+
+  <div class="panel panel-primary" *ngIf="consumers">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Consumer</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group row">
+        <div class="col-xs-4">
+          <label for="consName">Consumer Name</label>
+          <input type="text" name="consName" id="consName" class="form-control" [(ngModel)]="currentConsumer.Name" />
+        </div>
+        <div class="col-xs-4">
+            <label for="consUserId">Consumer UserId</label>
+            <input type="text" name="consUserId" id="consUserId" class="form-control" [(ngModel)]="currentConsumer.UserId" />
+          </div>
+          <div class="col-xs-4">
+              <label for="consPwd">Consumer Password</label>
+              <input type="password" name="consPwd" id="consPwd" class="form-control" [(ngModel)]="currentConsumer.Pwd" />
+            </div>
+      </div>
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Sl.No.</th>
+              <th>Consumer Name</th>
+              <th>Consumer UserId</th>
+              <th>Consumer Pwd</th>
+              <th>Alter</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let consumer of consumers; let i=index">
+              <td>{{i+1}}</td>
+              <td>{{consumer.Name}}</td>
+              <td>{{consumer.UserId}}</td>
+              <td>{{consumer.Pwd}}</td>
+              <td><a (click)='EditConsumer(consumer)'>Edit</a></td>
+              <td><a (click)='DeleteConsumer(consumer.Id)'>Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-primary" type="button" id="btnSaveConsu" (click)="SaveConsumer()">Save Consumer</button>
+    </div>
+  </div>
+</div>
+</div>

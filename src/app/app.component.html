@@ -1,0 +1,33 @@
+<ngx-spinner type="cog"></ngx-spinner>
+<!-- 
+SPINNER TYPES (https://github.danielcardoso.net/load-awesome/animations.html)  
+pacman
+ball-clip-rotate-multiple
+ball-clip-rotate-pulse
+ball-scale-ripple-multiple
+cog
+timer
+ball-spin-clockwise 
+-->
+<div class="backgroundimge">
+  <div *ngIf="isCurrentTokenValid">
+    <!--<ul class="nav nav-tabs">
+    <li routerLinkActive="active">
+      <a routerLink="admin">Master Data</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="takeResource">Resource Taken</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="allHistory">All History</a>
+    </li>
+  </ul>
+  <br/>
+  <router-outlet></router-outlet>-->
+    <app-workspace [currentToken]="currentToken" (onTokenValuePopulate)="WhenTokenValuePoplated($event)">
+    </app-workspace>
+  </div>
+  <div *ngIf="!isCurrentTokenValid">
+    <app-login (onTokenValuePopulate)="WhenTokenValuePoplated($event)"></app-login>
+  </div>
+</div>

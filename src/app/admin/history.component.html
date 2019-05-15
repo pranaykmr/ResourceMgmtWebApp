@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Filters
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-4">
+          <label for="selectConsumer">Select Consumer</label>
+          <select name="selectConsumer" class="form-control" [(ngModel)]="consumerId">
+            <option selected="" value="00000000-0000-0000-0000-000000000000"></option>
+            <option *ngFor="let consumer of consumers" [value]="consumer.Id">{{consumer.Name}}</option>
+          </select>
+        </div>
+        <div class="col-xs-4">
+          <label for="selectResource">Select Resource</label>
+          <select name="selectResource" class="form-control" [(ngModel)]="resourceId">
+            <option selected="" value="00000000-0000-0000-0000-000000000000"></option>
+            <option *ngFor="let resource of resources" [value]="resource.Id">{{resource.Name}}</option>
+          </select>
+        </div>
+        <div class="col-xs-4">   
+            <div class="checkbox-container">
+              <input type="checkbox" id="chkNotDroppedRes" name="chkNotDroppedRes" [(ngModel)]="withNoDropOfDate"/> 
+              <label for="HTML news">Get Not Dropped Resources</label>
+            </div>                    
+          <button type="button" class="btn btn-primary" (click)="FindHistory()">Fetch</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Fetch Result
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <th>Sl.No.</th>
+          <th>Resource Name</th>
+          <th>Consumer Name</th>
+          <th>PickUp Date</th>
+          <th>DropOff Date</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cnsmdRes of consumedResources; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{cnsmdRes.ResourceName}}</td>
+            <td>{{cnsmdRes.ConsumerName}}</td>
+            <td>{{cnsmdRes.PickUpDateTime | date: 'medium'}}</td>
+            <td>{{cnsmdRes.DropOfDateTime | date: 'medium'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
